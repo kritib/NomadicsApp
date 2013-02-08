@@ -21,16 +21,16 @@
 
   <%= link_to 'Add a trip', new_travel_path %>
 
-  <%= link_to 'Find a mule', travels_search_path %>
+  <%= link_to 'Find a mule', search_travels_path %>
+
+  <% elsif @friend %>
+
+  <%= link_to 'Travels', travel_path(user_id: @user.id) %>
+
+  <% else %>
+
+  <%= button_to "Add Friend", relationships_path(friend_id: @user.id), method: :post %>
 
   <% end %>
 
 
-
-
-
-
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

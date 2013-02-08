@@ -1,0 +1,21 @@
+<%= form_tag "/travels/results", :method => :get do %>
+  
+
+ 	<div class="field">
+    <%= label_tag :from %><br />
+    <%= text_field_tag :from %>
+  </div>
+  <div class="field">
+    <%= label_tag :to %><br />
+    <%= text_field_tag :to %>
+  </div>
+  <div class="field">
+    <%= label_tag :date %><br />
+    <%= text_field_tag :date %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Find mules" %>
+  </div>
+
+  <% end %>

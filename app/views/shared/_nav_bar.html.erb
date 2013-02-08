@@ -1,8 +1,8 @@
 
 <% if @current_user.nil? %>
-
+<li>
 <%= render 'sessions/new' %>
-
+</li>
 <% else %>
 <li>
 	<%= link_to "#{@current_user.name}", user_path(@current_user) %>

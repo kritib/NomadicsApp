@@ -1,25 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= render 'travel_table' %>
 
-<p>
-  <b>From:</b>
-  <%= @travel.from %>
-</p>
+<%= link_to "Back to #{@user.first_name}'s page", user_path(@user) %>
 
-<p>
-  <b>To:</b>
-  <%= @travel.to %>
-</p>
-
-<p>
-  <b>Date:</b>
-  <%= @travel.date %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @travel.user_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_travel_path(@travel) %> |
-<%= link_to 'Back', travels_path %>

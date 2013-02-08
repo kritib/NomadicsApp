@@ -1,14 +1,16 @@
 class TravelsController < ApplicationController
 
   def index
-    @travels = User.find(params[:user_id]).travels
-    @my_travels = true
+    @user = User.find(params[:user_id])
+    @travels = @user.travels
+    @single_user_travels = true
   end
 
  
   def show
-    render :json => params
-    # @travels = Travel.find(params[:id])
+    @user = User.find(params[:user_id])
+    @travels = @user.travels
+    @single_user_travels = true
   end
 
 
@@ -60,7 +62,13 @@ class TravelsController < ApplicationController
     end
   end
 
-  def find
+  def search
     
+  end
+
+  def results
+    @travels = @current_user.find_travels(from: params[:from], 
+                                          to: params[:to], 
+                                          date: params[:date])
   end
 end

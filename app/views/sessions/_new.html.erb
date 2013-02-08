@@ -1,16 +1,14 @@
 
 <%= form_tag "/sessions", :method => :post do %>	
-	<li>
+
 	<%= label_tag :email, "E-mail:" %>
 	<%= text_field_tag :email %>
-	</li>
-	<li>
+
+
 	<%= label_tag :password, "Password:" %>
 	<%= password_field_tag :password %>
-</li>
-<li>
+
 	<%= submit_tag "login" %>
-</li>
 <% end %>
 
 

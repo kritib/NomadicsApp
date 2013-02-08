@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
 	skip_before_filter :require_login, only: [:index, :new, :create]
 
 	def index
+		@current_user = current_user
+		puts @current_user
 	end
 
 	def new

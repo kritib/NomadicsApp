@@ -40,5 +40,12 @@ class User < ActiveRecord::Base
     self.update_attribute(:session_token, nil)
   end
 
+  def find_travels
+    self.travelers
+      .select
+      .travels
+      
+  end
+
 
 end

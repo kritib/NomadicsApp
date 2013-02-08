@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @access = has_access?(@user)
+    @friend = is_friend?(@user)
   end
 
 

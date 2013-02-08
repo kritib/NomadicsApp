@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless logged_in?
       flash[:error] = "YOU NEED TO LOG IN"
-      redirect_to new_sessions_path
+      redirect_to root_path
     end
   end
 
@@ -35,6 +35,9 @@ class ApplicationController < ActionController::Base
     else
       nil
     end
+  end
 
+  def is_friend?(user)
+    @current_user && user && @current_user.travelers.include?(user)
   end
 end

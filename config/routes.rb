@@ -2,12 +2,22 @@ NomadicsApp::Application.routes.draw do
   
   root to: 'sessions#index'
 
-  resources :travels
+  
   resources :users
   resource :sessions, :only => [:new, :create, :destroy]
+  resources :relationships
 
  
-  match '/travels/search', to: 'travels#find' 
+  # get '/travels/search', to: 'travels#find' 
+
+  # post '/travels/search_results', to: 'travels#results'
+
+  resources :travels do
+    collection do
+      get "search"
+      get "results"
+    end
+  end 
 
 
   # The priority is based upon order of creation:

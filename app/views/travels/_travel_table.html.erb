@@ -5,7 +5,7 @@
     <th>From</th>
     <th>To</th>
     <th>Date</th>
-    <% unless @my_travels %>
+    <% unless @single_user_travels %>
       <th>Mule</th>
     <% end %>
     <th></th>
@@ -18,7 +18,7 @@
     <td><%= travel.from %></td>
     <td><%= travel.to %></td>
     <td><%= travel.date %></td>
-    <% unless @my_travels %>
+    <% unless @single_user_travels %>
       <td><%= travel.traveler.name %></td>
     <% end %>
   </tr>
