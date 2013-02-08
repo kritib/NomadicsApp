@@ -8,7 +8,24 @@
 </head>
 <body>
 
+<% flash.each do |key, message| %>
+
+<p><%= "#{key}: #{message}" %></p>
+
+<% end %>
+
+
 <%= yield %>
+
+<% unless @current_user.nil? %>
+
+	<%= button_to "logout", sessions_path, :method => :delete %>
+
+<% else %>
+
+	<%= button_to "login", new_sessions_path, :method => :get %>
+
+<% end %>
 
 </body>
 </html>

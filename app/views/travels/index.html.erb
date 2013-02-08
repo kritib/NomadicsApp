@@ -1,29 +1,8 @@
-<h1>Listing travels</h1>
+<%= render 'travel_table' %>
 
-<table>
-  <tr>
-    <th>From</th>
-    <th>To</th>
-    <th>Date</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= link_to 'Add a trip', new_travel_path %>
 
-<% @travels.each do |travel| %>
-  <tr>
-    <td><%= travel.from %></td>
-    <td><%= travel.to %></td>
-    <td><%= travel.date %></td>
-    <td><%= travel.user_id %></td>
-    <td><%= link_to 'Show', travel %></td>
-    <td><%= link_to 'Edit', edit_travel_path(travel) %></td>
-    <td><%= link_to 'Destroy', travel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%= link_to 'Back to my page', user_path(@travels.first.traveler) %>
 
-<br />
 
-<%= link_to 'New Travel', new_travel_path %>
+

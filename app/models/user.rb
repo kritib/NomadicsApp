@@ -13,10 +13,9 @@ class User < ActiveRecord::Base
   				 :foreign_key => :user_id
   has_many :friends, :through => :friend_relationships
 
-  validates :email
 
-  validates :username, :uniqueness => true, :presence => true
-  validates :first_name, :last_name
+  validates :first_name, :last_name, :password_confirmation, :presence => true
+  validates :email, :uniqueness => true, :presence => true
 
   validates :password, :length => {:in => 8..16, 
   										 :message => "must be 8-16 characters"},
@@ -24,6 +23,22 @@ class User < ActiveRecord::Base
   										 :message => "must start with a letter and contain at least one number"},
   										 :presence => true
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def reset_token
+    token = SecureRandom.hex
+    if self.update_attribute(:session_token, token)
+      token
+    else
+      false
+    end
+  end
+
+  def delete_token
+    self.update_attribute(:session_token, nil)
+  end
 
 
 end

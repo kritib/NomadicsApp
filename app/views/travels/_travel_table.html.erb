@@ -1,0 +1,28 @@
+<h1>Listing travels</h1>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Date</th>
+    <% unless @my_travels %>
+      <th>Mule</th>
+    <% end %>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @travels.each do |travel| %>
+  <tr>
+    <td><%= travel.from %></td>
+    <td><%= travel.to %></td>
+    <td><%= travel.date %></td>
+    <% unless @my_travels %>
+      <td><%= travel.traveler.name %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

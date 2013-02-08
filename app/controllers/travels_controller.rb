@@ -1,55 +1,34 @@
 class TravelsController < ApplicationController
-  # GET /travels
-  # GET /travels.json
+
   def index
-    @travels = Travel.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @travels }
-    end
+    @travels = User.find(params[:user_id]).travels
+    @my_travels = true
   end
 
-  # GET /travels/1
-  # GET /travels/1.json
+ 
   def show
-    @travel = Travel.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @travel }
-    end
+    render :json => params
+    # @travels = Travel.find(params[:id])
   end
 
-  # GET /travels/new
-  # GET /travels/new.json
+
   def new
     @travel = Travel.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @travel }
-    end
+    @current_user
   end
 
-  # GET /travels/1/edit
   def edit
     @travel = Travel.find(params[:id])
   end
 
-  # POST /travels
-  # POST /travels.json
+
   def create
     @travel = Travel.new(params[:travel])
-
-    respond_to do |format|
-      if @travel.save
-        format.html { redirect_to @travel, notice: 'Travel was successfully created.' }
-        format.json { render json: @travel, status: :created, location: @travel }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @travel.errors, status: :unprocessable_entity }
-      end
+    @travel.user_id = @current_user.id
+    if @travel.save
+      redirect_to travels_path(:user_id => @current_user.id)
+    else
+      render :new
     end
   end
 
@@ -79,5 +58,9 @@ class TravelsController < ApplicationController
       format.html { redirect_to travels_url }
       format.json { head :no_content }
     end
+  end
+
+  def find
+    
   end
 end
