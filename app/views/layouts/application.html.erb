@@ -7,6 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href='/'>FriendMule</a>
+      <ul class="nav">
+
+      	<%= render "shared/nav_bar" %>
+        
+      </ul>
+    </div>
+  </div>
+
 
 <% flash.each do |key, message| %>
 
@@ -17,15 +28,8 @@
 
 <%= yield %>
 
-<% unless @current_user.nil? %>
 
-	<%= button_to "logout", sessions_path, :method => :delete %>
-
-<% else %>
-
-	<%= button_to "login", new_sessions_path, :method => :get %>
-
-<% end %>
 
 </body>
 </html>
+

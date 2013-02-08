@@ -1,0 +1,16 @@
+
+<% if @current_user.nil? %>
+
+<%= render 'sessions/new' %>
+
+<% else %>
+<li>
+	<%= link_to "#{@current_user.name}", user_path(@current_user) %>
+</li>
+
+<li>
+	<%= link_to "logout", sessions_path, :method => :delete %>
+</li>
+
+
+<% end %>
