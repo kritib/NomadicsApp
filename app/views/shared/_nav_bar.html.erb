@@ -4,11 +4,16 @@
 <%= render 'sessions/new' %>
 </li>
 <% else %>
+
+<li>
+	<%= link_to "friends(mules)", friends_user_path(@current_user) %>
+</li>
+
 <li>
 	<%= link_to "#{@current_user.name}", user_path(@current_user) %>
 </li>
 
-<li>
+<li class="pull-right">
 	<%= link_to "logout", sessions_path, :method => :delete %>
 </li>
 

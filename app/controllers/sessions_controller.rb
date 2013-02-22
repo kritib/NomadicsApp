@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
 	def index
 		@current_user = current_user
-		puts @current_user
 	end
 
 	def new

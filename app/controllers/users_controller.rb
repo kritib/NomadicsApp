@@ -29,7 +29,9 @@ class UsersController < ApplicationController
   end
 
   def create
+    photo_io = params[:user].delete(:photo_blob)
     @user = User.new(params[:user])
+    @user.photo_blob = photo_io.read unless photo_io.nil?
 
     if @user.save
       flash[:notice] = "Welcome to FriendMule, #{@user.name}!"
@@ -60,6 +62,15 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def photo
+    user = User.find(params[:id])
+    send_data(user.photo_blob, :type => 'image/jpg', :disposition => 'inline')
+  end
+
+  def friends
+    @friends = @current_user.travelers
   end
 
 

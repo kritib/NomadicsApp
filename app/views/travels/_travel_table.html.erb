@@ -15,11 +15,11 @@
 
 <% @travels.each do |travel| %>
   <tr>
-    <td><%= travel.from %></td>
-    <td><%= travel.to %></td>
+    <td><%= travel.from_country.name %></td>
+    <td><%= travel.to_country.name %></td>
     <td><%= travel.date %></td>
     <% unless @single_user_travels %>
-      <td><%= travel.traveler.name %></td>
+      <td><%= link_to travel.traveler.name, user_path(travel.traveler) %></td>
     <% end %>
   </tr>
 <% end %>

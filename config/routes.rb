@@ -3,7 +3,12 @@ NomadicsApp::Application.routes.draw do
   root to: 'sessions#index'
 
   
-  resources :users
+  resources :users do
+    member do
+      get "photo"
+      get "friends"
+    end
+  end
   resource :sessions, :only => [:new, :create, :destroy]
   resources :relationships
 

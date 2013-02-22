@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208072224) do
+ActiveRecord::Schema.define(:version => 20130208215851) do
+
+  create_table "countries", :force => true do |t|
+    t.string "name"
+  end
+
+  add_index "countries", ["name"], :name => "index_countries_on_name", :unique => true
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"

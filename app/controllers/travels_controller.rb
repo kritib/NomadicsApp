@@ -67,8 +67,11 @@ class TravelsController < ApplicationController
   end
 
   def results
-    @travels = @current_user.find_travels(from: params[:from], 
-                                          to: params[:to], 
-                                          date: params[:date])
+    query_hash = {from: params[:from],          
+                  to: params[:to],
+                  "date(1i)" => params[:date][:year],
+                  "date(2i)" => params[:date][:month],
+                  "date(3i)" => params[:date][:day]}
+    @travels = @current_user.find_travels(query_hash)
   end
 end

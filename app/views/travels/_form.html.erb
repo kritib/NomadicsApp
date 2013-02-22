@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :from %><br />
-    <%= f.text_field :from %>
+    <%= f.collection_select(:from, Country.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :to %><br />
-    <%= f.text_field :to %>
+    <%= f.collection_select(:to, Country.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :date %><br />

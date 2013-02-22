@@ -1,12 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <%= @user.name %>
-</p>
+<div class="row">
+  <div class="span4">
 
-<p>
-  <%= @user.photo_blob %>
-</p>
+    <% if @user.photo_blob %>
+      <%= image_tag photo_user_url(@user) %>
+    <% else %>
+      <%= image_tag('default_profile_pic.jpg') %>
+    <% end %>
+  </div>
+
+  <div class="span4">
+    <h3><%= @user.name %></h3>
+  </div>
+</div>
+<br>
+
 
 
 <% if @access %>

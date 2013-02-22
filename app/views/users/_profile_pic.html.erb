@@ -1,0 +1,10 @@
+
+<% if friend.photo_blob %>
+
+<%= image_tag photo_user_url(friend) %>
+
+<% else %>
+
+<%= image_tag('default_profile_pic.jpg') %>
+
+<% end %>

@@ -1,5 +1,5 @@
 
-<%= form_tag "/sessions", :method => :post do %>	
+<%= form_tag "/sessions", :method => :post, class: "form-inline" do %>	
 
 	<%= label_tag :email, "E-mail:" %>
 	<%= text_field_tag :email %>
@@ -12,3 +12,4 @@
 <% end %>
 
 
+ 
