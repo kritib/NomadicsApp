@@ -23,10 +23,12 @@ var DrawMaps = (function () {
 			var today = new Date();
 			if (that.date < today) {
 				ctx.strokeStyle = "rgba(75,251,53,0.4)";
+				ctx.lineWidth = 4;
 			} else {
-				ctx.strokeStyle = "rgba(255,0,0,0.4)";
+				ctx.strokeStyle = "rgba(255,0,0,0.6)";
+				ctx.lineWidth = 3;
 			}
-			ctx.lineWidth = 4;
+
 			ctx.beginPath();
 			ctx.moveTo(that.fromPos.x, that.fromPos.y);
 			var cpx = that.fromPos.x + ((that.toPos.x - that.fromPos.x) / 2);
