@@ -14,7 +14,33 @@
 
  @import 'bootstrap-styles';
  @import 'bootstrap';
- 
+
 //  header, footer, .media, table {
 //   margin: 10px;
 // }
+
+.main {
+	margin: 20px;
+}
+
+
+.controls select {
+	width: inherit;
+}
+
+form {
+		margin: 10px 0 0 0;
+}
+
+.inline-form-btn {
+	margin-top: 25px;
+
+}
+
+
+
+
+
+
+
+

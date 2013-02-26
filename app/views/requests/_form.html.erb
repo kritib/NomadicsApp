@@ -1,0 +1,48 @@
+<%= simple_form_for @request, :class => "form-inline" do |f| %>
+
+  <%= f.error_notification %>
+
+  <h5>Item Info</h5>
+
+  <div class='row'>
+    <div class='span4'>
+    	<%= f.input :item_description, :label => 'What is it?' %>
+    </div>
+    <div class='span2'>
+      <%= f.input :item_size, :collection => %w(small medium large) %>
+    </div>
+    <div class='span2'>
+      <%= f.input :item_weight, :label => 'Approx wt (lbs)' %>
+    </div>
+
+  </div>
+
+
+
+  <h5>Transport requirements</h5>
+
+  <div class='row'>
+    <div class='span2'>
+      <%= f.association :from_country, :label => 'From',
+                                       :label_method => :name,
+                                       :value_method => :name,
+                                       :include_blank => false  %>
+    </div>
+    <div class='span2'>
+      <%= f.association :to_country, :label => 'To',
+                                     :label_method => :name,
+                                     :value_method => :name,
+                                     :include_blank => false  %>
+    </div>
+    <div class='span4'>
+      <%= f.input :date %>
+    </div>
+
+  </div>
+
+  <div>
+    <%= f.submit "Add Request", :class => 'btn' %>
+
+  </div>
+
+<% end %>

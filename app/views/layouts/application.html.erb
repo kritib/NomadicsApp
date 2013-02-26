@@ -18,16 +18,13 @@
     </div>
   </div>
 
+  <div class="main">
+    <% if flash[:special] %>
+      <div id="notice"><%= flash[:special] %></div>
+    <% end %>
 
-<% flash.each do |key, message| %>
-
-<p><%= "#{key}: #{message}" %></p>
-
-<% end %>
-
-
-<%= yield %>
-
+    <%= yield %>
+  </div>
 
 
 </body>

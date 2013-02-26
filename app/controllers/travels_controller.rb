@@ -6,7 +6,7 @@ class TravelsController < ApplicationController
     @single_user_travels = true
   end
 
- 
+
   def show
     @user = User.find(params[:user_id])
     @travels = @user.travels
@@ -63,11 +63,11 @@ class TravelsController < ApplicationController
   end
 
   def search
-    
+
   end
 
   def results
-    query_hash = {from: params[:from],          
+    query_hash = {from: params[:from],
                   to: params[:to],
                   "date(1i)" => params[:date][:year],
                   "date(2i)" => params[:date][:month],
@@ -75,3 +75,7 @@ class TravelsController < ApplicationController
     @travels = @current_user.find_travels(query_hash)
   end
 end
+
+
+
+

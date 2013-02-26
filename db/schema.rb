@@ -11,10 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208215851) do
+ActiveRecord::Schema.define(:version => 20130226174048) do
 
   create_table "countries", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "x"
+    t.integer "y"
   end
 
   add_index "countries", ["name"], :name => "index_countries_on_name", :unique => true
@@ -29,13 +31,26 @@ ActiveRecord::Schema.define(:version => 20130208215851) do
   add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
-  create_table "travels", :force => true do |t|
+  create_table "requests", :force => true do |t|
     t.string   "from"
     t.string   "to"
     t.date     "date"
+    t.string   "item_size"
+    t.integer  "item_weight"
+    t.integer  "item_legality"
+    t.string   "item_description"
+    t.integer  "requester_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "travels", :force => true do |t|
+    t.integer  "from",       :limit => 255
+    t.integer  "to",         :limit => 255
+    t.date     "date"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "travels", ["user_id"], :name => "index_travels_on_user_id"

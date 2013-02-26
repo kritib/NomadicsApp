@@ -1,0 +1,27 @@
+<h3>Listing Requests</h3>
+
+<div class="row table-header">
+	<div class="span2"><h5>From</h5></div>
+	<div class="span2"><h5>To</h5></div>
+	<div class="span2"><h5>Date</h5></div>
+	<div class="span1"><h5>Item</h5></div>
+	<div class="span1"><h5>Size</h5></div>
+	<div class="span1"><h5>Weight(lbs)</h5></div>
+	<% unless @single_user_requests %>
+		<div class="span1"><h5>Requester</h5></div>
+	<% end %>
+</div>
+
+<% @requests.each do |request| %>
+	<div class="row table-header">
+		<div class="span2"><%= request.from %></div>
+		<div class="span2"><%= request.to %></div>
+		<div class="span2"><%= request.date %></div>
+		<div class="span1"><%= request.item_description %></div>
+		<div class="span1"><%= request.item_size %></div>
+		<div class="span1"><%= request.item_weight %></div>
+		<% unless @single_user_requests %>
+			<div class="span1"><%= link_to request.requester.name, user_path(request.requester_id) %></div>
+		<% end %>
+	</div>
+<% end %>

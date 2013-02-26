@@ -1,21 +1,36 @@
 
 <% if @current_user.nil? %>
-<li>
-<%= render 'sessions/new' %>
-</li>
+
+	<li>
+	<%= render 'sessions/new' %>
+	</li>
+
 <% else %>
 
-<li>
-	<%= link_to "friends(mules)", friends_user_path(@current_user) %>
-</li>
+	<li>
+		<form class="navbar-search" action="" method="get">
+		  <input type="text" class="search-query" placeholder="Search for a user">
+		</form>
+	</li>
 
-<li>
-	<%= link_to "#{@current_user.name}", user_path(@current_user) %>
-</li>
+	<li>
+		<%= link_to "friends(mules)", friends_user_path(@current_user) %>
+	</li>
 
-<li class="pull-right">
-	<%= link_to "logout", sessions_path, :method => :delete %>
-</li>
+	<li>
+		<%= link_to "#{@current_user.name}", user_path(@current_user) %>
+	</li>
+
+	<li class="pull-right">
+		<%= link_to "logout", sessions_path, :method => :delete %>
+	</li>
 
 
 <% end %>
+
+
+<script>
+
+
+
+</script>

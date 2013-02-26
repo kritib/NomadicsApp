@@ -1,21 +1,38 @@
-<%= form_tag "/travels/results", :method => :get do %>
-  
+<%= form_tag "/travels/results", :method => :get, :class => "form-inline" do %>
 
- 	<div class="field">
-    <%= label_tag :from %><br />
-    <%= text_field_tag :from %>
+  <div class='row'>
+    <div class='span2'>
+      <%= label_tag :from %>
+      <div class="controls">
+      <%= collection_select :from, :id, Country.all, :id, :name %>
+      </div>
+    </div>
+
+    <div class='span2'>
+       <%= label_tag :to %>
+
+      <div class="controls">
+      <%= collection_select :to, :id, Country.all, :id, :name %>
+      </div>
+    </div>
+
+    <div class='span4'>
+      <%= label_tag :date %>
+      <div class="controls">
+        <%= select_date() %>
+      </div>
+    </div>
+
   </div>
-  <div class="field">
-    <%= label_tag :to %><br />
-    <%= text_field_tag :to %>
-  </div>
-  <div class="field">
-    <%= label_tag :date %><br />
-    <%= select_date() %>
-  </div>
+
+
+  <br>
+
 
   <div class="actions">
     <%= submit_tag "Find mules" %>
   </div>
 
   <% end %>
+
+

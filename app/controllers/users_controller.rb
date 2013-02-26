@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @travels = @user.travels.includes(:from_country, :to_country).all
     @access = has_access?(@user)
     @friend = is_friend?(@user)
   end

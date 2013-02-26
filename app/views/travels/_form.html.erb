@@ -1,30 +1,32 @@
-<%= form_for(@travel) do |f| %>
-  <% if @travel.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
 
-      <ul>
-      <% @travel.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= simple_form_for @travel, :class => "form-inline" do |f| %>
+
+  <%= f.error_notification %>
+
+  <div class='row'>
+    <div class='span2'>
+      <%= f.association :from_country, :label => 'From',
+                                       :label_method => :name,
+                                       :value_method => :id,
+                                       :include_blank => false  %>
     </div>
-  <% end %>
+    <div class='span2'>
+      <%= f.association :to_country, :label => 'To',
+                                     :label_method => :name,
+                                     :value_method => :id,
+                                     :include_blank => false  %>
+    </div>
+    <div class='span4'>
+      <%= f.input :date %>
+    </div>
+    <div class='span2'>
+      <button class="btn, inline-form-btn add-trip">Enter Another Trip</button>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :from %><br />
-    <%= f.collection_select(:from, Country.all, :id, :name) %>
-  </div>
-  <div class="field">
-    <%= f.label :to %><br />
-    <%= f.collection_select(:to, Country.all, :id, :name) %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
+  <div>
+    <%= f.submit "Add Trip", :class => 'btn' %>
+
   </div>
 
-  <div class="actions">
-    <%= f.submit "Add Trip" %>
-  </div>
 <% end %>

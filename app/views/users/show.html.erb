@@ -18,28 +18,48 @@
 
 
 
-<% if @access %>
-
+<% if @access || @friend %>
 
   <p>
     <b>Email:</b>
     <%= @user.email %>
   </p>
 
-  <%= link_to 'My travels', travels_path(user_id: @user.id) %>
+  <canvas id="travel-map" width="800" height="500"></canvas>
+
+  <%= link_to 'Travels', travels_path(user_id: @user.id) %>
+<% end %>
+
+
+<% if @access %>
 
   <%= link_to 'Add a trip', new_travel_path %>
 
   <%= link_to 'Find a mule', search_travels_path %>
 
-  <% elsif @friend %>
+  <%= link_to 'Add a request', new_request_path %>
 
-  <%= link_to 'Travels', travel_path(user_id: @user.id) %>
-
-  <% else %>
+<% elsif !@friend %>
 
   <%= button_to "Add Friend", relationships_path(friend_id: @user.id), method: :post %>
 
-  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  var travelData = <%= @travels.to_json(:include =>
+                                       [:from_country, :to_country])
+                                       .html_safe %>;
+
+  $(function () {
+    var canvas = document.getElementById('travel-map');
+    var ctx = canvas.getContext('2d');
+    // ctx.canvas.width  = window.innerWidth;
+    // ctx.canvas.height = window.innerHeight;
+
+    new DrawMaps.Map(ctx).drawNewMap(travelData);
+
+  });
+
+</script>
 
 
