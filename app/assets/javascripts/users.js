@@ -1,3 +1,5 @@
+// REV: this file will get blown away when the ERB compiles
+
 PAGEX = 22;
 PAGEY = 291;
 

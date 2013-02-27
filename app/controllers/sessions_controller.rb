@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
+          # REV: wonky tabs
 		if user = User.find_by_email(params[:email])
 			if user.authenticate(params[:password])
 				if token = user.reset_token

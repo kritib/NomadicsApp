@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130226174048) do
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
   create_table "requests", :force => true do |t|
+    # REV: is from/to a country? Should this be a country id?
     t.string   "from"
     t.string   "to"
     t.date     "date"
@@ -45,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20130226174048) do
   end
 
   create_table "travels", :force => true do |t|
+    # REV: I like to use names like from_country_id to make clear the
+    # type of the referenced object.
     t.integer  "from",       :limit => 255
     t.integer  "to",         :limit => 255
     t.date     "date"
@@ -59,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20130226174048) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
+    # REV: would be better not to keep blobs of binary data inside the
+    # model; create another model. Will fetch down the whole blob each time
     t.binary   "photo_blob"
     t.string   "password_digest"
     t.datetime "created_at",      :null => false

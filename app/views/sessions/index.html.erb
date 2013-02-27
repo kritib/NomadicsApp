@@ -6,6 +6,8 @@
 
 <h1>Welcome to FriendMule!</h1>
 
+<!-- REV: Should this ever be shown if the user is logged in? -->
+<!-- REV: Wait; how do they log in (not sign up)? -->
 <% if @current_user.nil? %>
 	<%= button_to "Sign up!", new_user_path, :method => :get %>
 <% end %>

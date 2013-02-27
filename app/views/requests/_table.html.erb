@@ -7,7 +7,9 @@
 	<div class="span1"><h5>Item</h5></div>
 	<div class="span1"><h5>Size</h5></div>
 	<div class="span1"><h5>Weight(lbs)</h5></div>
-	<% unless @single_user_requests %>
+        <!-- REV: When does this mean; when is it false? I guess
+	     sometimes it's nil? Probably should comment this. -->
+        <% unless @single_user_requests %>
 		<div class="span1"><h5>Requester</h5></div>
 	<% end %>
 </div>

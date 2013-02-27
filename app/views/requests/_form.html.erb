@@ -23,6 +23,8 @@
 
   <div class='row'>
     <div class='span2'>
+      <!-- REV: why do you want to set the value method this way?
+           Don't you want to store an id? -->
       <%= f.association :from_country, :label => 'From',
                                        :label_method => :name,
                                        :value_method => :name,
