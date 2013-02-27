@@ -3,14 +3,14 @@ class TravelsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @travels = @user.travels
+    @travel = Travel.new
     @single_user_travels = true
   end
 
 
   def show
-    @user = User.find(params[:user_id])
-    @travels = @user.travels
-    @single_user_travels = true
+    @travel = Travel.find(params[:id])
+
   end
 
 
@@ -63,7 +63,14 @@ class TravelsController < ApplicationController
   end
 
   def search
-
+    if params[:from] && params[:to] && params[:date]
+      query_hash = {from: params[:from],
+                    to: params[:to],
+                    "date(1i)" => params[:date][:year],
+                    "date(2i)" => params[:date][:month],
+                    "date(3i)" => params[:date][:day]}
+      @travels = @current_user.find_travels(query_hash)
+    end
   end
 
   def results

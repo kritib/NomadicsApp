@@ -74,5 +74,9 @@ class UsersController < ApplicationController
     @friends = @current_user.travelers
   end
 
+  def search
+    render :json => params
+  end
+
 
 end

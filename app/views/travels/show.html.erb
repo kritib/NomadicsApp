@@ -1,4 +1,26 @@
-<%= render 'travel_table' %>
 
-<%= link_to "Back to #{@user.first_name}'s page", user_path(@user) %>
+<table class="table">
+  <thead>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Date</th>
+    <th>Mule</th>
+  </tr>
+</thead>
+
+<tbody>
+<tr>
+  <td><%= @travel.from_country.name %></td>
+  <td><%= @travel.to_country.name %></td>
+  <td><%= @travel.date %></td>
+  <td><%= link_to @travel.traveler.name, user_path(@travel.traveler) %></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
 

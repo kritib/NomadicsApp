@@ -1,0 +1,34 @@
+<%= form_tag "/travels/search", :method => :get, :class => "form-inline" do %>
+
+  <div class='row'>
+    <div class='span2'>
+      <%= label_tag :from %>
+      <div class="controls">
+      <%= collection_select :from, :id, Country.all, :id, :name %>
+      </div>
+    </div>
+
+    <div class='span2'>
+       <%= label_tag :to %>
+
+      <div class="controls">
+      <%= collection_select :to, :id, Country.all, :id, :name %>
+      </div>
+    </div>
+
+    <div class='span4'>
+      <%= label_tag :date %>
+      <div class="controls">
+        <%= select_date() %>
+      </div>
+    </div>
+
+    <div class='span2'>
+      <div class="actions">
+        <%= submit_tag "Find mules", :class => 'btn inline-form-btn' %>
+      </div>
+    </div>
+
+  </div>
+
+  <% end %>

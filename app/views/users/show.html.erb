@@ -33,7 +33,7 @@
 
 <% if @access %>
 
-  <%= link_to 'Add a trip', new_travel_path %>
+  <%= link_to 'Add a trip', travels_path(user_id: @user.id) %>
 
   <%= link_to 'Find a mule', search_travels_path %>
 

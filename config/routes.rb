@@ -10,7 +10,7 @@ NomadicsApp::Application.routes.draw do
     end
 
     collection do
-      get "results"
+      get "search"
     end
   end
   resource :sessions, :only => [:new, :create, :destroy]

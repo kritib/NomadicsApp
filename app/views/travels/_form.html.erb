@@ -20,13 +20,8 @@
       <%= f.input :date %>
     </div>
     <div class='span2'>
-      <button class="btn, inline-form-btn add-trip">Enter Another Trip</button>
+      <%= f.submit "Add Trip", :class => 'btn inline-form-btn' %>
     </div>
-  </div>
-
-  <div>
-    <%= f.submit "Add Trip", :class => 'btn' %>
-
   </div>
 
 <% end %>
