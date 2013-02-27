@@ -53,17 +53,21 @@ class User < ActiveRecord::Base
     results = []
 
     queries.each do |query|
+      # REV: lookup named parameters for SQL; this is the positional
+      # way, but it's a little repetitious as you see.
       results += User.all.where("first_name LIKE ? OR last_name LIKE ? OR email LIKE ?",
                              query, query, query)
     end
 
     results = User.all.where("first_name LIKE ? OR last_name IN ? OR email IN ?",
                              queries, queries, queries)
+    # REV: why uniq!?
     results.uniq!.each do |result|
       if friends.include?(result)
         friend_results.push(results.delete(result))
       end
     end
+    # REV: don't leave trailing whitespace like this.
 
 
 
@@ -74,6 +78,6 @@ class User < ActiveRecord::Base
       "\%#{query}\%"
     end
   end
-
+  # REV: don't leave trailing whitespace like this.
 
 end

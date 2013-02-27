@@ -5,6 +5,7 @@ NomadicsApp::Application.routes.draw do
 
   resources :users do
     member do
+      # REV: should be nested resources I think
       get "photo"
       get "friends"
     end
@@ -18,6 +19,7 @@ NomadicsApp::Application.routes.draw do
   resources :requests
 
   resources :travels do
+    # REV: likewise
     collection do
       get "search"
       get "results"
