@@ -10,3 +10,6 @@ countries = [{name: "India", x: 546, y: 166},
 countries.each do |country|
   Country.create(country)
 end
+
+User.create(first_name: "test", last_name: "user10", email: "test@user10",
+            password: "testuser10", password_confirmation: "testuser10")
