@@ -21,14 +21,12 @@ class SessionsController < ApplicationController
           flash[:error] = user.errors.full_messages.to_sentence
         end
       else
-        flash[:notice] = "Woah, guy, try again!"
-        flash[:error] = "Wrong Password"
+        flash[:special] = "Wrong Password"
       end
     else
-      flash[:notice] = "Woah, guy, try again!"
-      flash[:error] = "Invalid email address"
+      flash[:special] = "Invalid email address"
     end
-    render :new
+    render 'index'
 	end
 
 	def destroy
