@@ -1,6 +1,3 @@
-PAGEX = 22;
-PAGEY = 291;
-
 
 var DrawMaps = (function () {
 
@@ -49,6 +46,7 @@ var DrawMaps = (function () {
 		var that = this;
 
 		that.drawNewMap = function(travelData) {
+			// that.clickHandler();
 			travelData.forEach (function(travel) {
 				new Travel(travel.date, travel.from_country, travel.to_country)
 						.draw(ctx);

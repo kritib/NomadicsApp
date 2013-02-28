@@ -24,10 +24,11 @@
     <b>Email:</b>
     <%= @user.email %>
   </p>
-
-  <canvas id="travel-map" width="800" height="400"></canvas>
-
+  <p>
+    <canvas id="travel-map" width="800" height="400"></canvas>
+  </p>
   <%= link_to 'Travels', travels_path(user_id: @user.id) %>
+  <%= link_to 'Requests', requests_path(user_id: @user.id) %>
 <% end %>
 
 
@@ -37,7 +38,9 @@
 
   <%= link_to 'Find a mule', search_travels_path %>
 
-  <%= link_to 'Add a request', new_request_path %>
+  <%= link_to 'Add a request', requests_path(user_id: @user.id) %>
+
+  <%= link_to 'Edit Profile', edit_user_path(@current_user) %>
 
 <% elsif !@friend %>
 

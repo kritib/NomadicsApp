@@ -51,6 +51,16 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    photo_io = params[:user].delete(:photo_blob)
+    @user.photo_blob = photo_io.read unless photo_io.nil?
+    if @user.update_attributes(params[:user])
+      redirect_to user_path(@user)
+    else
+      render 'edit'
+    end
+
+    # @user = User.find(params[:id])
+    # @user.update_attribute(params)
 
   end
 
@@ -71,11 +81,12 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @friends = @current_user.travelers
+    @results = @current_user.travelers
   end
 
   def search
-    render :json => params
+    @results = User.find_users(params[:search_query])
+    render 'search'
   end
 
 

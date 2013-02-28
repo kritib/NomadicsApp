@@ -1,10 +1,14 @@
 <% if @user.id == @current_user.id %>
+
 	<h2>My Travels</h2>
 	<%= render 'new' %>
 	<%= link_to 'Back to my page', user_path(@current_user) %>
+
 <% else %>
+
 	<h2><%= @user.first_name %>'s Travels</h2>
 	<%= link_to "Back to #{@user.first_name}'s page", user_path(@user) %>
+
 <% end %>
 
 <br><br>

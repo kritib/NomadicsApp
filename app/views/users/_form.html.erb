@@ -1,45 +1,18 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= simple_form_for @user do |f| %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <%= f.error_notification %>
+
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :photo_blob, :label => 'Upload a Profile Picture',
+                           :as => :file %>
+  <% if @current_user %>
+    <%= f.submit "Save Changes" %>
+  <% else %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.submit "Sign Up!" %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :photo_blob %><br />
-    <%= f.file_field :photo_blob %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confrimation, "confirm password" %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

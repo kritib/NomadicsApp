@@ -1,0 +1,19 @@
+<% @results.each do |user| %>
+  <div class="well">
+    <div class="row">
+      <div class="span1">
+
+        <% if user.photo_blob %>
+          <%= image_tag photo_user_url(user) %>
+        <% else %>
+          <%= image_tag('default_profile_pic.jpg') %>
+        <% end %>
+
+      </div>
+
+      <div class="span2">
+        <%= link_to "#{user.name}", user_path(user) %>
+      </div>
+    </div>
+  </div>
+<% end %>

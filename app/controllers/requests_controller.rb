@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
 
 	def index
     @user = User.find(params[:user_id])
+    @request = Request.new
     @requests = @user.requests
     @single_user_requests = true
   end
