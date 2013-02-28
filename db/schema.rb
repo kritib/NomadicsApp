@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226174048) do
+ActiveRecord::Schema.define(:version => 20130228010159) do
 
   create_table "countries", :force => true do |t|
     t.string  "name"
@@ -32,16 +32,16 @@ ActiveRecord::Schema.define(:version => 20130226174048) do
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
   create_table "requests", :force => true do |t|
-    t.string   "from"
-    t.string   "to"
+    t.integer  "from",             :limit => 255
+    t.integer  "to",               :limit => 255
     t.date     "date"
     t.string   "item_size"
     t.integer  "item_weight"
     t.integer  "item_legality"
     t.string   "item_description"
     t.integer  "requester_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "travels", :force => true do |t|

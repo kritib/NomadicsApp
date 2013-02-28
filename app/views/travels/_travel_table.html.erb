@@ -1,29 +1,30 @@
 
 <table class="table table-hover">
   <thead>
-  <tr>
-    <th>From</th>
-    <th>To</th>
-    <th>Date</th>
-    <% unless @single_user_travels %>
-      <th>Mule</th>
-    <% end %>
-  </tr>
-</thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <% unless @single_user_travels %>
+        <th>Mule</th>
+      <% end %>
+    </tr>
+  </thead>
 
-<tbody class="travel-items">
+  <tbody class="travel-items">
 
-<% @travels.each do |travel| %>
-  <tr class="travel-id[<%= travel.id %>]">
-    <td><%= travel.from_country.name %></td>
-    <td><%= travel.to_country.name %></td>
-    <td><%= travel.date %></td>
-    <% unless @single_user_travels %>
-      <td><%= link_to travel.traveler.name, user_path(travel.traveler) %></td>
+    <% @travels.each do |travel| %>
+      <tr class="travel-id[<%= travel.id %>]">
+        <td><%= travel.from_country.name %></td>
+        <td><%= travel.to_country.name %></td>
+        <td><%= travel.date %></td>
+        <% unless @single_user_travels %>
+          <td><%= link_to travel.traveler.name,
+                          user_path(travel.traveler) %></td>
+        <% end %>
+      </tr>
     <% end %>
-  </tr>
-<% end %>
-</tbody>
+  </tbody>
 </table>
 
 <script type="text/javascript">

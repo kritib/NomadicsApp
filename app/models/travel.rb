@@ -9,4 +9,7 @@ class Travel < ActiveRecord::Base
   belongs_to :to_country, :class_name => "Country", :foreign_key => :to
 
   validates :date, :from, :to, :user_id, :presence => true
+
+  validates :date, :uniqueness => { :scope => [:from, :to],
+                   :message => "You've already entered this trip" }
 end

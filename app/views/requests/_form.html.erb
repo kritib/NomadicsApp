@@ -25,13 +25,13 @@
     <div class='span2'>
       <%= f.association :from_country, :label => 'From',
                                        :label_method => :name,
-                                       :value_method => :name,
+                                       :value_method => :id,
                                        :include_blank => false  %>
     </div>
     <div class='span2'>
       <%= f.association :to_country, :label => 'To',
                                      :label_method => :name,
-                                     :value_method => :name,
+                                     :value_method => :id,
                                      :include_blank => false  %>
     </div>
     <div class='span4'>
