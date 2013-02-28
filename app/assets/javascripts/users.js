@@ -19,10 +19,10 @@ var DrawMaps = (function () {
 		that.draw = function (ctx) {
 			var today = new Date();
 			if (that.date < today) {
-				ctx.strokeStyle = "rgba(75,251,53,0.4)";
-				ctx.lineWidth = 4;
+				ctx.strokeStyle = "rgba(255,255,255,0.25)";
+				ctx.lineWidth = 3;
 			} else {
-				ctx.strokeStyle = "rgba(255,0,0,0.6)";
+				ctx.strokeStyle = "rgba(75,251,53,0.6)";
 				ctx.lineWidth = 3;
 			}
 
