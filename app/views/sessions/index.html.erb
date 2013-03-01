@@ -1,11 +1,33 @@
 
-
-<div class="well">
-	<%= image_tag('home_page_pic.jpg') %>
-</div>
-
-<h1>Welcome to FriendMule!</h1>
-
 <% if @current_user.nil? %>
+
+  <div id="home-page-pic">
+  	<%= image_tag('home_page_pic.png') %>
+  </div>
+
+  <div id="home-page-text">
+    <div class="span1 well sign-up-well">
+      <strong>Sign up!</strong>
+    </div>
+
+    <div class="span6 well greeting-well">
+      <strong>Nomadics:</strong> The worlds best international shipping service!
+    </div>
+
+  </div>
+
+
 	<%= button_to "Sign up!", new_user_path, :method => :get %>
+
+<% else %>
+
+  <div class="well">
+    <%= render 'travels/ticker' %>
+  </div>
+
+  <div class="well">
+    <%= render 'requests/ticker' %>
+  </div>
+
+
 <% end %>

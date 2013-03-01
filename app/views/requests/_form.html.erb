@@ -38,11 +38,16 @@
       <%= f.input :date %>
     </div>
 
+    <div class='span2'>
+      <% if @request.id %>
+        <%= f.submit "Update Request", :class => 'btn inline-form-btn' %>
+      <% else %>
+        <%= f.submit "Add Request", :class => 'btn inline-form-btn' %>
+      <% end %>
+    </div>
+
   </div>
 
-  <div>
-    <%= f.submit "Add Request", :class => 'btn' %>
 
-  </div>
 
 <% end %>

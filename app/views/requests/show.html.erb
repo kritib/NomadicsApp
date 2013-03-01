@@ -1,0 +1,71 @@
+
+<div class='show-single-request'>
+<table class="table">
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th>Item</th>
+      <th>Size</th>
+      <th>Weight(lbs)</th>
+      <% if @request.requester_id == @current_user.id %>
+        <th>Actions</th>
+      <% else %>
+        <th>User</th>
+      <% end %>
+      <th>Mule</th>
+    </tr>
+  </thead>
+
+  <tbody class="request-items">
+      <tr>
+        <td><%= @request.from_country.name %></td>
+        <td><%= @request.to_country.name %></td>
+        <td><%= @request.date %></td>
+        <td><%= @request.item_description %></td>
+        <td><%= @request.item_size %></td>
+        <td><%= @request.item_weight %></td>
+        <% if @request.requester_id == @current_user.id %>
+          <td>
+          <%= link_to "Edit", edit_request_path(@request),
+                              remote: true,
+                              class: 'btn btn-small btn-info edit-request' %>
+          <%= link_to "Delete", request_path(@request),
+                                method: :delete,
+                                confirm: "Are you sure you want to permanently delete this request?",
+                                class: 'btn btn-small btn-primary' %>
+          </td>
+          <td>
+            <%= link_to "Find a Mule", search_travels_path(request_id: @request.id), class: 'btn btn-small btn-info' %>
+          </td>
+        <% else %>
+          <td><%= link_to request.requester.name,
+                          user_path(request.requester_id) %></td>
+
+          <% if request.mule_id.nil? %>
+            <td>
+              <%= link_to "Carry this Item", remote: true,
+                          class: 'btn btn-small btn-info be-mule' %>
+            </td>
+
+        <% end %>
+        <% unless request.mule_id.nil? %>
+          <td><%= link_to request.mule.name,
+                          user_path(request.mule_id) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+<script type="text/javascript">
+  $('.edit-request').bind('ajax:success', function(event, data) {
+    $('.show-single-request').html(data);
+  });
+
+
+
+</script>

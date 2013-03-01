@@ -1,6 +1,4 @@
-
-<table class="table table-hover">
-  <thead>
+<thead>
     <tr>
       <th>From</th>
       <th>To</th>
@@ -11,23 +9,20 @@
     </tr>
   </thead>
 
-  <tbody class="travel-items">
+  <div class="ticket">
+    <tbody class="travel-items">
 
-    <% @travels.each do |travel| %>
-      <tr class="travel-id[<%= travel.id %>]"
-          id="<% if travel.date >= Date.today %>
-          not-yet-traveled
-          <% end %>">
-        <td><%= travel.from_country.name %></td>
-        <td><%= travel.to_country.name %></td>
-        <td><%= travel.date %></td>
-        <% unless @single_user_travels %>
+      <% friend_travels.each do |travel| %>
+        <tr class="travel-id[<%= travel.id %>]">
+          <td><%= travel.from_country.name %></td>
+          <td><%= travel.to_country.name %></td>
+          <td><%= travel.date %></td>
           <td><%= link_to travel.traveler.name,
                           user_path(travel.traveler) %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
+        </tr>
+      <% end %>
+    </tbody>
+  </div>
 </table>
 
 <script type="text/javascript">

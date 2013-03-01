@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <div class="span4">
 
+  <div class="span3">
     <% if @user.photo_blob %>
       <%= image_tag photo_user_url(@user) %>
     <% else %>
@@ -10,43 +10,64 @@
     <% end %>
   </div>
 
-  <div class="span4">
+  <div class="span3">
     <h3><%= @user.name %></h3>
+    <% if @access || @friend %>
+      <p>
+        <b>Email:</b>
+        <%= @user.email %>
+      </p>
+      <% if @access %>
+        <%= link_to 'Edit Profile', edit_user_path(@current_user),
+                                      method: :get,
+                                      class: 'btn link-btn' %>
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="span2">
+    <% if @access || @friend %>
+      <%= link_to 'Travels', travels_path(user_id: @user.id),
+                             class: 'btn link-btn' %>
+    <% end %>
+
+    <% if @access %>
+      <%= link_to 'Add Trips', travels_path(user_id: @user.id),
+                                  class: 'btn link-btn' %>
+
+      <%= link_to 'Find Mules', search_travels_path,
+                                   class: 'btn link-btn' %>
+
+    <% elsif !@friend %>
+
+      <%= button_to "Add Friend", relationships_path(friend_id: @user.id), method: :post %>
+
+    <% end %>
+  </div>
+
+
+  <div class="span2">
+    <% if @access || @friend %>
+      <%= link_to 'Requests', requests_path(user_id: @user.id),
+                                class: 'btn link-btn' %>
+    <% end %>
+
+    <% if @access %>
+        <%= link_to 'Add Requests', requests_path(user_id: @user.id),
+                                     class: 'btn link-btn' %>
+    <% end %>
   </div>
 </div>
+
 <br>
 
-
-
 <% if @access || @friend %>
-
-  <p>
-    <b>Email:</b>
-    <%= @user.email %>
-  </p>
   <p>
     <canvas id="travel-map" width="800" height="400"></canvas>
   </p>
-  <%= link_to 'Travels', travels_path(user_id: @user.id) %>
-  <%= link_to 'Requests', requests_path(user_id: @user.id) %>
 <% end %>
 
-
-<% if @access %>
-
-  <%= link_to 'Add a trip', travels_path(user_id: @user.id) %>
-
-  <%= link_to 'Find a mule', search_travels_path %>
-
-  <%= link_to 'Add a request', requests_path(user_id: @user.id) %>
-
-  <%= link_to 'Edit Profile', edit_user_path(@current_user) %>
-
-<% elsif !@friend %>
-
-  <%= button_to "Add Friend", relationships_path(friend_id: @user.id), method: :post %>
-
-<% end %>
 
 <script type="text/javascript">
   var travelData = <%= @travels.to_json(:include =>

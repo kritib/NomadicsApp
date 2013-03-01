@@ -1,24 +1,51 @@
+<div class='show-single-travel'>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Date</th>
+        <% if @travel.user_id == @current_user.id %>
+          <th>Actions</th>
+        <% else %>
+          <th>Mule</th>
+        <% end %>
+      </tr>
+    </thead>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>From</th>
-      <th>To</th>
-      <th>Date</th>
-      <th>Mule</th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td><%= @travel.from_country.name %></td>
+        <td><%= @travel.to_country.name %></td>
+        <td><%= @travel.date %></td>
+        <td>
+        <% if @travel.user_id == @current_user.id %>
+          <%= link_to "Edit", edit_travel_path(@travel),
+                              remote: true,
+                              class: 'btn btn-small btn-info edit-travel' %>
+          <%= link_to "Delete", travel_path(@travel),
+                                method: :delete,
+                                confirm: "Are you sure you want to permanently delete this trip?",
+                                class: 'btn btn-small btn-primary' %>
 
-  <tbody>
-    <tr>
-      <td><%= @travel.from_country.name %></td>
-      <td><%= @travel.to_country.name %></td>
-      <td><%= @travel.date %></td>
-      <td><%= link_to @travel.traveler.name,
-                      user_path(@travel.traveler) %></td>
-    </tr>
-  </tbody>
-</table>
+        <% else %>
+          <%= link_to @travel.traveler.name,
+                      user_path(@travel.user_id) %>
+        <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $('.edit-travel').bind('ajax:success', function(event, data) {
+    $('.show-single-travel').html(data);
+  });
+
+
+
+</script>
 
 
 

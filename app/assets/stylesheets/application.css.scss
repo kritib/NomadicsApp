@@ -37,7 +37,50 @@ form {
 
 }
 
+h2, h3 {
+  font-family: Arial;
+}
 
+
+.link-btn {
+  margin-top: 10px;
+}
+
+#not-yet-traveled {
+  color: green;
+}
+
+#not-yet-shipped {
+  color: green;
+}
+
+#no-mule-found {
+  color: red;
+}
+
+#home-page-pic {
+  margin: auto;
+}
+
+.sign-up-well, .greeting-well {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 255, 1);
+
+  font-style: bold;
+}
+
+.sign-up-well {
+  font-size: 13px;
+  left: 20px;
+  top: 100px;
+}
+
+.greeting-well {
+  font-size: 20px;
+  left: 200px;
+  top: 340px;
+}
 
 
 

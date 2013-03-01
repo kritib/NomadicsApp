@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     self.update_attribute(:session_token, nil)
   end
 
+  def get_all_travels
+    self.travels.order("date DESC")
+  end
+
   def find_travels(options)
     Travel.create!(options)
 
@@ -58,33 +62,16 @@ class User < ActiveRecord::Base
 
   end
 
-  # def search_results(queries)
-  #   queries = parse_queries(queries)
-  #   friend_results = []
-  #   friends = self.travelers
-  #   results = []
+  def find_friend_travels(query)
+    self.travelers
+        .joins(:travels)
+        .where("travels.from = ? AND travels.to = ? AND travels.date >= ?",
+               query[:from], query[:to], Date.today)
+        .order("ABS(travels.date - ?)", query[:date])
 
-  #   queries.each do |query|
-  #     results += User.select("('first_name' || ' ' || 'last_name') AS full_name")
-  #                     .where("full_name LIKE ?", query)
-  #   end
+    self.travelers
+        .includes(:travels)
 
-  #   results = User.all.where("first_name LIKE ? OR last_name IN ? OR email IN ?",
-  #                            queries, queries, queries)
-  #   results.uniq!.each do |result|
-  #     if friends.include?(result)
-  #       friend_results.push(results.delete(result))
-  #     end
-  #   end
-
-
-
-  # end
-
-  def parse_queries(query_str)
-    query_str.split(' ').map do |query|
-      "\%#{query}\%"
-    end
   end
 
 

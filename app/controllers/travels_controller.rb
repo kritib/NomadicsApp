@@ -2,7 +2,7 @@ class TravelsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @travels = @user.travels
+    @travels = @user.get_all_travels
     @travel = Travel.new
     @single_user_travels = true
   end
@@ -10,17 +10,16 @@ class TravelsController < ApplicationController
 
   def show
     @travel = Travel.find(params[:id])
-
   end
 
 
   def new
     @travel = Travel.new
-    @current_user
   end
 
   def edit
     @travel = Travel.find(params[:id])
+    render 'travels/_new', :layout => false
   end
 
 
@@ -57,19 +56,27 @@ class TravelsController < ApplicationController
     @travel.destroy
 
     respond_to do |format|
-      format.html { redirect_to travels_url }
+      format.html { redirect_to travels_path(:user_id => @current_user.id) }
       format.json { head :no_content }
     end
   end
 
   def search
-    if params[:from] && params[:to] && params[:date]
+    if params[:request_id]
+      @request = Request.find(params[:request_id])
+      query_hash = {from: @request.from,
+                    to: @request.to,
+                    date: @request.date}
+
+      @travels = @current_user.find_friend_travels(query_hash)
+
+    elsif params[:from] && params[:to] && params[:date]
       query_hash = {from: params[:from],
                     to: params[:to],
                     "date(1i)" => params[:date][:year],
                     "date(2i)" => params[:date][:month],
                     "date(3i)" => params[:date][:day]}
-      @travels = @current_user.find_travels(query_hash)
+      @travels = @current_user.find_friend_travels(query_hash)
     end
   end
 

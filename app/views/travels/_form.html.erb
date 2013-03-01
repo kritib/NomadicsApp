@@ -20,7 +20,11 @@
       <%= f.input :date %>
     </div>
     <div class='span2'>
-      <%= f.submit "Add Trip", :class => 'btn inline-form-btn' %>
+      <% if @travel.id %>
+        <%= f.submit "Update Trip", :class => 'btn inline-form-btn' %>
+      <% else %>
+        <%= f.submit "Add Trip", :class => 'btn inline-form-btn' %>
+      <% end %>
     </div>
   </div>
 

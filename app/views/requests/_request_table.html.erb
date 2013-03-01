@@ -11,13 +11,19 @@
 	    <% unless @single_user_requests %>
 	      <th>User</th>
 	    <% end %>
+	    <th>Mule</th>
 	  </tr>
 	</thead>
 
 	<tbody class="request-items">
 
 		<% @requests.each do |request| %>
-		  <tr class="request-id[<%= request.id %>]">
+		  <tr class="request-id[<%= request.id %>]"
+		  		id="<% if request.mule_id.nil? %>
+          no-mule-found
+		  		<% elsif request.date >= Date.today %>
+          not-yet-shipped
+          <% end %>">
 		    <td><%= request.from_country.name %></td>
 		    <td><%= request.to_country.name %></td>
 		    <td><%= request.date %></td>
@@ -26,9 +32,26 @@
 		    <td><%= request.item_weight %></td>
 		    <% unless @single_user_requests %>
 		      <td><%= link_to request.requester.name,
-		      								user_path(request.requester) %></td>
+		      								user_path(request.requester_id) %></td>
+		    <% end %>
+		    <% unless request.mule_id.nil? %>
+		    	<td><%= link_to request.mule.name,
+		      								user_path(request.mule_id) %></td>
 		    <% end %>
 		  </tr>
 		<% end %>
 	</tbody>
 </table>
+
+<script type="text/javascript">
+  $(function () {
+    $('.request-items').click(function (event) {
+      var requestElement = $(event.target).parent()[0];
+      var requestID = $(requestElement).attr('class').match(/\d+/)[0];
+      window.location.href = 'requests/' + requestID;
+    })
+
+  })
+
+
+</script>
