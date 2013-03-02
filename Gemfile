@@ -6,6 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
+gem 'pg'
 gem 'bcrypt-ruby'
 
 
@@ -29,13 +30,6 @@ group :test, :development do
 	gem "rspec-rails"
 end
 
-group :development do
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg'
-end
 
 
 # To use ActiveModel has_secure_password

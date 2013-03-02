@@ -1,4 +1,4 @@
-<thead>
+<!-- <thead>
     <tr>
       <th>From</th>
       <th>To</th>
@@ -9,7 +9,7 @@
     </tr>
   </thead>
 
-  <div class="ticket">
+  <div class="ticker">
     <tbody class="travel-items">
 
       <% friend_travels.each do |travel| %>
@@ -23,13 +23,23 @@
       <% end %>
     </tbody>
   </div>
-</table>
+</table> -->
+
+<% friend_travels.each do |travel| %>
+
+  <div class="row friend-travel travel-id[<%= travel.id %>]">
+    <strong><%= travel.traveler.name %></strong>
+    <% if travel.date >= Date.today %>is going <% else %>went <% end %>from
+    <strong><%= travel.from_country.name %></strong> to
+    <strong><%= travel.to_country.name %></strong> on
+    <strong><%= travel.date.strftime('%a %d %b %Y') %></strong>
+  </div>
+<% end %>
 
 <script type="text/javascript">
   $(function () {
-    $('.travel-items').click(function (event) {
-      var travelElement = $(event.target).parent()[0];
-      var travelID = $(travelElement).attr('class').match(/\d+/)[0];
+    $('.travels-ticker').click(function (event) {
+      var travelID = $(event.target).attr('class').match(/\d+/)[0];
       window.location.href = 'travels/' + travelID;
     })
 

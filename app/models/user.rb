@@ -9,10 +9,12 @@ class User < ActiveRecord::Base
   has_many :traveler_relationships, :class_name => "Relationship",
   				                          :foreign_key => :friend_id
   has_many :travelers, :through => :traveler_relationships
+  has_many :traveler_travels, :through => :travelers, :source => :travels
 
   has_many :friend_relationships, :class_name => "Relationship",
   				                        :foreign_key => :user_id
   has_many :friends, :through => :friend_relationships
+  has_many :friend_mule_requests, :through => :friends, :source => :requests
 
 
   validates :first_name, :last_name, :presence => true
@@ -56,22 +58,23 @@ class User < ActiveRecord::Base
 
   def self.find_users(query_str)
     self
-      .select("users.*, (first_name || ' ' || last_name) AS full_name")
-      .where("full_name LIKE ?", "\%#{query_str.chomp}\%")
+      .where("(first_name || ' ' || last_name) LIKE ?", "\%#{query_str.chomp}\%")
       .all
 
   end
 
+  def all_friend_travels
+    self.traveler_travels("updated_at DESC")
+  end
+
+  def all_friend_mule_requests
+    self.friend_mule_requests.order("updated_at DESC")
+  end
+
   def find_friend_travels(query)
-    self.travelers
-        .joins(:travels)
-        .where("travels.from = ? AND travels.to = ? AND travels.date >= ?",
-               query[:from], query[:to], Date.today)
-        .order("ABS(travels.date - ?)", query[:date])
-
-    self.travelers
-        .includes(:travels)
-
+    self.traveler_travels
+        .where(:travels => {from: query[:from], to: query[:to]})
+        .order(sanitize_sql_array(["?", query[:date]]))
   end
 
 

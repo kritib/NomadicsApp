@@ -13,3 +13,17 @@ end
 
 User.create(first_name: "test", last_name: "user10", email: "test@user10",
             password: "testuser10", password_confirmation: "testuser10")
+
+User.create(first_name: "test", last_name: "user11", email: "test@user11",
+            password: "testuser10", password_confirmation: "testuser10")
+
+User.create(first_name: "test", last_name: "user1", email: "test@user1",
+            password: "testuser10", password_confirmation: "testuser10")
+
+User.create(first_name: "test", last_name: "user5", email: "test@user5",
+            password: "testuser10", password_confirmation: "testuser10")
+
+User.create(first_name: "kriti", last_name: "user10", email: "kriti@user10",
+            password: "testuser10", password_confirmation: "testuser10")
+
+

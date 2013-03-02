@@ -1,0 +1,12 @@
+<% friend_mule_requests.each do |request| %>
+
+  <div class="row friend-mule-request">
+    <strong><%= request.requester.name %></strong>
+    needs a <% request.item_size %> sized
+    <strong><% request.item_description %></strong>
+    to be taken from
+    <strong><%= request.from_country.name %></strong> to
+    <strong><%= request.to_country.name %></strong> on
+    <strong><%= request.date.strftime('%a %d %b %Y') %></strong>
+  </div>
+<% end %>

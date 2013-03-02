@@ -70,12 +70,14 @@ class TravelsController < ApplicationController
 
       @travels = @current_user.find_friend_travels(query_hash)
 
+
     elsif params[:from] && params[:to] && params[:date]
-      query_hash = {from: params[:from],
-                    to: params[:to],
+      query_hash = {from: params[:from][:id],
+                    to: params[:to][:id],
                     "date(1i)" => params[:date][:year],
                     "date(2i)" => params[:date][:month],
                     "date(3i)" => params[:date][:day]}
+      p query_hash
       @travels = @current_user.find_friend_travels(query_hash)
     end
   end

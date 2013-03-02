@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
 	skip_before_filter :require_login, only: [:index, :new, :create]
+  include SessionsHelper
 
 	def index
 		@current_user = current_user
