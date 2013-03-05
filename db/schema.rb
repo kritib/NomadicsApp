@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301152041) do
+ActiveRecord::Schema.define(:version => 20130305061946) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "travel_id"
+    t.integer  "commenter_id"
+    t.integer  "request_id"
+    t.text     "body"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "countries", :force => true do |t|
     t.string  "name"
@@ -32,26 +41,33 @@ ActiveRecord::Schema.define(:version => 20130301152041) do
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
 
   create_table "requests", :force => true do |t|
-    t.integer  "from",             :limit => 255
-    t.integer  "to",               :limit => 255
     t.date     "date"
     t.string   "item_size"
     t.integer  "item_weight"
     t.integer  "item_legality"
     t.string   "item_description"
     t.integer  "requester_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "mule_id"
+    t.integer  "from"
+    t.integer  "to"
+  end
+
+  create_table "shippings", :force => true do |t|
+    t.integer  "travel_id"
+    t.integer  "request_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "travels", :force => true do |t|
-    t.integer  "from",       :limit => 255
-    t.integer  "to",         :limit => 255
     t.date     "date"
     t.integer  "user_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "from"
+    t.integer  "to"
   end
 
   add_index "travels", ["user_id"], :name => "index_travels_on_user_id"
