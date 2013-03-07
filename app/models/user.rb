@@ -47,8 +47,26 @@ class User < ActiveRecord::Base
     self.update_attribute(:session_token, nil)
   end
 
-  def get_all_travels
-    self.travels.order("date DESC")
+  def travels_by_origin
+    self.travels
+        .joins(:from_country)
+        .order("countries.name")
+  end
+
+  def travels_by_destination
+    self.travels
+        .joins(:to_country)
+        .order("countries.name")
+  end
+
+  def travels_by_updated
+    self.travels
+        .order("updated_at DESC")
+  end
+
+  def travels_by_travel_date
+    self.travels
+        .order("date DESC")
   end
 
   def find_travels(options)
@@ -58,7 +76,8 @@ class User < ActiveRecord::Base
 
   def self.find_users(query_str)
     self
-      .where("(first_name || ' ' || last_name) LIKE ?", "\%#{query_str.chomp}\%")
+      .where("(first_name || ' ' || last_name) LIKE ?",
+             "\%#{query_str.chomp}\%")
       .all
 
   end
@@ -72,9 +91,17 @@ class User < ActiveRecord::Base
   end
 
   def find_friend_travels(query)
+    order_str = User.send(:sanitize_sql_array,
+                          ["ABS(travels.date - ?)", query[:date]])
+    select_str = User.send(:sanitize_sql_array,
+                          ["travels.*, (travels.date - ?) AS time_diff", query[:date]])
     self.traveler_travels
-        .where(:travels => {from: query[:from], to: query[:to]})
-        .order(sanitize_sql_array(["?", query[:date]]))
+        .select(select_str)
+        .where("travels.from = ? AND
+                travels.to = ? AND
+                travels.date >= ?",
+                query[:from], query[:to], Date.today)
+        .order(order_str)
   end
 
 

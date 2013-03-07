@@ -16,6 +16,8 @@ NomadicsApp::Application.routes.draw do
   resource :sessions, :only => [:new, :create, :destroy]
   resources :relationships
   resources :requests
+  resources :shippings
+  resources :comments
 
   resources :travels do
     collection do

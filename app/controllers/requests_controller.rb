@@ -9,6 +9,8 @@ class RequestsController < ApplicationController
 
 	def new
 		@request = Request.new
+    @requests = @current_user.requests
+    @single_user_requests = true
 	end
 
 
@@ -16,8 +18,10 @@ class RequestsController < ApplicationController
 		@request = Request.new(params[:request])
     @request.requester_id = @current_user.id
     if @request.save
-      redirect_to requests_path(:user_id => @current_user.id)
+      redirect_to new_request_path
     else
+      @requests = @current_user.requests.order("updated_at DESC")
+      @single_user_requests = true
       render :new
     end
 	end
@@ -28,7 +32,7 @@ class RequestsController < ApplicationController
 
   def edit
     @request = Request.find(params[:id])
-    render 'requests/_new', :layout => false
+    render 'requests/_form', :layout => false
   end
 
   def update

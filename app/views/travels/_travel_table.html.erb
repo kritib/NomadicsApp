@@ -5,6 +5,9 @@
       <th>From</th>
       <th>To</th>
       <th>Date</th>
+      <% if @time_diff %>
+        <th>Suitability</th>
+      <% end %>
       <% unless @single_user_travels %>
         <th>Mule</th>
       <% end %>
@@ -15,12 +18,21 @@
 
     <% @travels.each do |travel| %>
       <tr class="travel-id[<%= travel.id %>]"
-          id="<% if travel.date >= Date.today %>
-          not-yet-traveled
-          <% end %>">
+          id="<% if travel.date >= Date.today %>not-yet-traveled<% end %>">
         <td><%= travel.from_country.name %></td>
         <td><%= travel.to_country.name %></td>
-        <td><%= travel.date %></td>
+        <td><%= travel.date.strftime('%a %d %b %Y') %></td>
+        <% if @time_diff %>
+          <td>
+            <% if travel.time_diff.to_i == 0 %>
+              same day
+            <% elsif travel.time_diff.to_i < 0 %>
+              <%= -travel.time_diff.to_i %> days before
+            <% else %>
+              <%= travel.time_diff.to_i %> days later
+            <% end %>
+          </td>
+        <% end %>
         <% unless @single_user_travels %>
           <td><%= link_to travel.traveler.name,
                           user_path(travel.traveler) %></td>
@@ -35,7 +47,7 @@
     $('.travel-items').click(function (event) {
       var travelElement = $(event.target).parent()[0];
       var travelID = $(travelElement).attr('class').match(/\d+/)[0];
-      window.location.href = 'travels/' + travelID;
+      window.location.href = '/travels/' + travelID;
     })
 
   })

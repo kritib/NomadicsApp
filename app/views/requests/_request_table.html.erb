@@ -48,7 +48,7 @@
     $('.request-items').click(function (event) {
       var requestElement = $(event.target).parent()[0];
       var requestID = $(requestElement).attr('class').match(/\d+/)[0];
-      window.location.href = 'requests/' + requestID;
+      window.location.href = '/requests/' + requestID;
     })
 
   })

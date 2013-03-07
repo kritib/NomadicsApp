@@ -5,7 +5,10 @@ class Request < ActiveRecord::Base
   belongs_to :requester, :class_name => "User", :foreign_key => :requester_id
   belongs_to :from_country, :class_name => "Country", :foreign_key => :from
   belongs_to :to_country, :class_name => "Country", :foreign_key => :to
-  belongs_to :mule, :class_name => "User", :foreign_key => :mule_id
+  has_one :mule, :class_name => "User", :foreign_key => :mule_id
+
+  has_one :shipping
+  has_one :travel, :through => :shipping
 
 
   validates :requester_id, :date, :from, :to, :presence => true

@@ -10,54 +10,38 @@
     <% end %>
   </div>
 
-  <div class="span3">
+  <div class="span4">
     <h3><%= @user.name %></h3>
     <% if @access || @friend %>
       <p>
         <b>Email:</b>
         <%= @user.email %>
       </p>
-      <% if @access %>
-        <%= link_to 'Edit Profile', edit_user_path(@current_user),
-                                      method: :get,
-                                      class: 'btn link-btn' %>
-      <% end %>
+    <% end %>
+    <% if @access %>
+      <%= link_to 'Edit Profile', edit_user_path(@current_user),
+                                  method: :get,
+                                  class: 'btn link-btn' %>
+    <% elsif !@friend %>
+      <%= button_to "Add Friend", relationships_path(friend_id: @user.id),                          method: :post %>
     <% end %>
 
   </div>
 
-  <div class="span2">
-    <% if @access || @friend %>
-      <%= link_to 'Travels', travels_path(user_id: @user.id),
-                             class: 'btn link-btn' %>
-    <% end %>
 
-    <% if @access %>
-      <%= link_to 'Add Trips', travels_path(user_id: @user.id),
-                                  class: 'btn link-btn' %>
+  <% if @access %>
+     <div class="span2">
+
+      <%= link_to 'Add Trips', new_travel_path,
+                               class: 'btn link-btn' %>
 
       <%= link_to 'Find Mules', search_travels_path,
-                                   class: 'btn link-btn' %>
-
-    <% elsif !@friend %>
-
-      <%= button_to "Add Friend", relationships_path(friend_id: @user.id), method: :post %>
-
-    <% end %>
-  </div>
-
-
-  <div class="span2">
-    <% if @access || @friend %>
-      <%= link_to 'Requests', requests_path(user_id: @user.id),
                                 class: 'btn link-btn' %>
-    <% end %>
 
-    <% if @access %>
-        <%= link_to 'Add Requests', requests_path(user_id: @user.id),
-                                     class: 'btn link-btn' %>
-    <% end %>
-  </div>
+      <%= link_to 'Add Requests', requests_path(user_id: @user.id),
+                                  class: 'btn link-btn' %>
+    </div>
+  <% end %>
 </div>
 
 <br>
@@ -66,6 +50,15 @@
   <p>
     <canvas id="travel-map" width="800" height="400"></canvas>
   </p>
+
+  <div class="row">
+    <%= render 'travels/index' %>
+  </div>
+
+  <div class="row">
+    <%= render 'requests/index' %>
+  </div>
+
 <% end %>
 
 
@@ -77,8 +70,6 @@
   $(function () {
     var canvas = document.getElementById('travel-map');
     var ctx = canvas.getContext('2d');
-    // ctx.canvas.width  = window.innerWidth;
-    // ctx.canvas.height = window.innerHeight;
 
     new DrawMaps.Map(ctx).drawNewMap(travelData);
 

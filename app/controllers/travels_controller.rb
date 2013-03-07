@@ -2,32 +2,48 @@ class TravelsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @travels = @user.get_all_travels
-    @travel = Travel.new
+    case params[:order_by]
+    when "origin"
+      @travels = @user.travels_by_origin
+    when "destination"
+      @travels = @user.travels_by_destination
+    when "travel-date"
+      @travels = @user.travels_by_travel_date
+    when "date-added"
+      @travels = @user.travels_by_updated
+    else
+      @travels = @user.travels
+    end
     @single_user_travels = true
+    render 'travels/_travel_table', :layout => false
   end
 
 
   def show
     @travel = Travel.find(params[:id])
+    @comments = @travel.comments
   end
 
 
   def new
     @travel = Travel.new
+    @travels = @current_user.travels_by_updated
+    @single_user_travels = true
   end
 
   def edit
     @travel = Travel.find(params[:id])
-    render 'travels/_new', :layout => false
+    render 'travels/_form', :layout => false
   end
 
 
   def create
     @travel = Travel.new(params[:travel])
     @travel.user_id = @current_user.id
+    @travels = @current_user.travels.order("updated_at DESC")
+    @single_user_travels = true
     if @travel.save
-      redirect_to travels_path(:user_id => @current_user.id)
+      redirect_to new_travel_path
     else
       render :new
     end
@@ -69,26 +85,19 @@ class TravelsController < ApplicationController
                     date: @request.date}
 
       @travels = @current_user.find_friend_travels(query_hash)
-
+      @from = Country.find(@request.from)
+      @to = Country.find(@request.to)
+      @time_diff = true
 
     elsif params[:from] && params[:to] && params[:date]
       query_hash = {from: params[:from][:id],
                     to: params[:to][:id],
-                    "date(1i)" => params[:date][:year],
-                    "date(2i)" => params[:date][:month],
-                    "date(3i)" => params[:date][:day]}
-      p query_hash
+                    date: Date.parse("#{params[:date][:year]}-#{params[:date][:month]}-#{params[:date][:day]}")}
       @travels = @current_user.find_friend_travels(query_hash)
+      @from = Country.find(params[:from][:id])
+      @to = Country.find(params[:to][:id])
+      @time_diff = true
     end
-  end
-
-  def results
-    query_hash = {from: params[:from],
-                  to: params[:to],
-                  "date(1i)" => params[:date][:year],
-                  "date(2i)" => params[:date][:month],
-                  "date(3i)" => params[:date][:day]}
-    @travels = @current_user.find_travels(query_hash)
   end
 end
 

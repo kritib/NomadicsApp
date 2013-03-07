@@ -17,7 +17,7 @@
       <tr>
         <td><%= @travel.from_country.name %></td>
         <td><%= @travel.to_country.name %></td>
-        <td><%= @travel.date %></td>
+        <td><%= @travel.date.strftime('%a %d %b %Y') %></td>
         <td>
         <% if @travel.user_id == @current_user.id %>
           <%= link_to "Edit", edit_travel_path(@travel),
@@ -36,6 +36,13 @@
       </tr>
     </tbody>
   </table>
+
+  <% if @travel.user_id == @current_user.id %>
+    <%= link_to "Back to My Page", user_path(@travel.user_id) %>
+  <% else %>
+    <%= link_to "Back to #{@travel.traveler.first_name}'s Page",
+        user_path(@travel.user_id) %>
+  <% end %>
 </div>
 
 <script type="text/javascript">

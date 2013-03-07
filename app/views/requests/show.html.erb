@@ -1,6 +1,6 @@
 
 <div class='show-single-request'>
-<table class="table">
+  <table class="table">
   <thead>
     <tr>
       <th>From</th>
@@ -40,24 +40,30 @@
             <%= link_to "Find a Mule", search_travels_path(request_id: @request.id), class: 'btn btn-small btn-info' %>
           </td>
         <% else %>
-          <td><%= link_to request.requester.name,
-                          user_path(request.requester_id) %></td>
+          <td><%= link_to @request.requester.name,
+                          user_path(@request.requester_id) %></td>
 
-          <% if request.mule_id.nil? %>
+          <% if @request.mule_id.nil? %>
             <td>
               <%= link_to "Carry this Item", remote: true,
                           class: 'btn btn-small btn-info be-mule' %>
             </td>
 
-        <% end %>
-        <% unless request.mule_id.nil? %>
-          <td><%= link_to request.mule.name,
-                          user_path(request.mule_id) %></td>
-        <% end %>
+          <% else %>
+            <td><%= link_to @request.mule.name,
+                          user_path(@request.mule_id) %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>
-</table>
+  </table>
+
+  <% if @request.requester_id == @current_user.id %>
+    <%= link_to "Back to My Page", user_path(@request.requester_id) %>
+  <% else %>
+    <%= link_to "Back to #{@request.requester.first_name}'s Page",
+        user_path(@request.requester_id) %>
+  <% end %>
 </div>
 
 

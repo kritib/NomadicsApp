@@ -1,0 +1,6 @@
+<% simple_form_for @comment do |f| %>
+  <%= f.input :body %>
+  <%= f.input :request %>
+  <%= f.submit "Add Comment", :remote => true %>
+
+<% end %>
