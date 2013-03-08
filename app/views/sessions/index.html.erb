@@ -26,7 +26,7 @@
           </div></a>
           <div class="span1">or</div>
           <div class="span2">
-            Login with Facebook
+            Login using Facebook
           </div>
         </div>
 
@@ -46,12 +46,11 @@
 	<%= button_to "Sign up!", new_user_path, :method => :get %>
 
 <% else %>
-<div class="span4">
+<div class="span6">
   <h3>Friend's Travels</h3>
-
-  <div class="well travels-ticker">
+  <pre class="pre-scrollable travels-ticker">
     <%= render 'travels/ticker' %>
-  </div>
+  </pre>
 </div>
 
 <div class="span5">

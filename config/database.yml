@@ -26,6 +26,6 @@ test:
 
 # production:
 #   adapter: postgresql
-#   database: db/production.sqlite3
+#   database: nomadics_production
 #   pool: 5
 #   timeout: 5000

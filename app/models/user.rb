@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :travels
   has_many :requests, :foreign_key => :requester_id
+  has_many :mulings, :class_name => "Request", :foreign_key => :mule_id
 
   has_many :traveler_relationships, :class_name => "Relationship",
   				                          :foreign_key => :friend_id

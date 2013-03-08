@@ -2,41 +2,39 @@
   <div class="span2 div-header">Travels</div>
 
   <div class="btn-group">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Order By
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu">
-    <li><%= link_to "origin", travels_path(:user_id => @user.id,
-                                           :order_by => "origin"),
-                              remote: true,
-                              class: "ordering-travels",
-                              tabindex: "-1" %></li>
-    <li><%= link_to "destination", travels_path(:user_id => @user.id,
-                                           :order_by => "destination"),
-                              remote: true,
-                              class: "ordering-travels",
-                              tabindex: "-1" %></li>
-    <li><%= link_to "travel date", travels_path(:user_id => @user.id,
-                                           :order_by => "travel-date"),
-                              remote: true,
-                              class: "ordering-travels",
-                              tabindex: "-1" %></li>
-    <li><%= link_to "date added", travels_path(:user_id => @user.id,
-                                           :order_by => "date-added"),
-                              remote: true,
-                              class: "ordering-travels",
-                              tabindex: "-1" %></li>
-  </ul>
-</div>
-
-<% if @user.id == @current_user.id %>
-  <div class="pull-right">
-    <%= link_to "Add Travels", new_travel_path,
-                               class: "btn" %>
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Order By
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "origin", travels_path(:user_id => @user.id,
+                                             :order_by => "origin"),
+                                remote: true,
+                                class: "ordering-travels",
+                                tabindex: "-1" %></li>
+      <li><%= link_to "destination", travels_path(:user_id => @user.id,
+                                             :order_by => "destination"),
+                                remote: true,
+                                class: "ordering-travels",
+                                tabindex: "-1" %></li>
+      <li><%= link_to "travel date", travels_path(:user_id => @user.id,
+                                             :order_by => "travel-date"),
+                                remote: true,
+                                class: "ordering-travels",
+                                tabindex: "-1" %></li>
+      <li><%= link_to "date added", travels_path(:user_id => @user.id,
+                                             :order_by => "date-added"),
+                                remote: true,
+                                class: "ordering-travels",
+                                tabindex: "-1" %></li>
+    </ul>
   </div>
-<% end %>
 
+  <% if @user.id == @current_user.id %>
+    <div class="pull-right">
+      <%= link_to "Add Travels", new_travel_path, class: "btn" %>
+    </div>
+  <% end %>
 </p>
 
 <pre class="pre-scrollable user-page-travels">

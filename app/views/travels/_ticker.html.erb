@@ -34,6 +34,12 @@
     <strong><%= travel.to_country.name %></strong> on
     <strong><%= travel.date.strftime('%a %d %b %Y') %></strong>
   </div>
+
+  <div class="friend-travel travel-id[<%= travel.id %>]">
+    <div class="well">
+      <%= travel.traveler.name %> <% if travel.date >= Date.today %>is going <% else %>went <% end %>from <%= travel.from_country.name %> to <%= travel.to_country.name %> on <%= travel.date.strftime('%a %d %b %Y') %>
+    </div>
+  </div>
 <% end %>
 
 <script type="text/javascript">

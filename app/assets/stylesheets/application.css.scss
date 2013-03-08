@@ -82,9 +82,9 @@ h2, h3 {
   top: 340px;
 }
 
-.friend-travel, .friend-mule-request {
-  margin: auto;
-}
+// .friend-travel, .friend-mule-request {
+//   margin: auto;
+// }
 
 .friend-mule-request {
   background-color: rgba(102, 153, 255, 0.25);
@@ -92,18 +92,18 @@ h2, h3 {
   margin-bottom: 10px;
 }
 
-.friend-travel {
-  background-color: rgba(255, 255, 255, 0.75);
-  padding: 5px;
-  margin-bottom: 10px;
-  color: #0000e6;
-}
+// .friend-travel {
+//   background-color: rgba(255, 255, 255, 0.75);
+//   padding: 5px;
+//   margin-bottom: 10px;
+//   color: #0000e6;
+// }
 
 // .travels-ticker {
 //   height: 200px;
 // }
 
-.pre-scrollable {
+.user-page-travels, .user-page-requests {
   max-height: 250px;
   margin-left: 20px;
 }

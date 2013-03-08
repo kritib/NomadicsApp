@@ -3,7 +3,7 @@ class Shipping < ActiveRecord::Base
 
   belongs_to :request
   belongs_to :travel
-  belongs_to :shipper, :through => :travel, :source => :traveler
+  # belongs_to :shipper, :through => :travel, :source => :traveler
 
 
   validates :request_id, :travel_id, :presence => true

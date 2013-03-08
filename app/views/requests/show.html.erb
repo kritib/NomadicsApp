@@ -45,8 +45,10 @@
 
           <% if @request.mule_id.nil? %>
             <td>
-              <%= link_to "Carry this Item", remote: true,
-                          class: 'btn btn-small btn-info be-mule' %>
+              <%= button_to "Carry this Item",
+                            shippings_path(request_id: @request.id),
+                            method: :post,
+                            class: 'btn btn-small btn-info' %>
             </td>
 
           <% else %>
