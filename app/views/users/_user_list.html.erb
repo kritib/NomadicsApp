@@ -14,6 +14,13 @@
       <div class="span2">
         <%= link_to "#{user.name}", user_path(user) %>
       </div>
+
+      <div class="pull-right">
+        <% unless @friends.include?(user) %>
+          <%= button_to "Add Friend", relationships_path(friend_id: user.id),                          method: :post,
+                                      class: "btn" %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

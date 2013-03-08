@@ -63,8 +63,7 @@
   <% if @request.requester_id == @current_user.id %>
     <%= link_to "Back to My Page", user_path(@request.requester_id) %>
   <% else %>
-    <%= link_to "Back to #{@request.requester.first_name}'s Page",
-        user_path(@request.requester_id) %>
+    <%= link_to "Back", @source %>
   <% end %>
 </div>
 

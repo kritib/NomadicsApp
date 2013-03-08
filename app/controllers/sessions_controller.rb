@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 
 	def index
 		@current_user = current_user
+    @user = User.new
 	end
 
 	def new

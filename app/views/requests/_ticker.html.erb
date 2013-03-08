@@ -1,6 +1,6 @@
 <% friend_mule_requests.each do |request| %>
 
-  <div class="row friend-mule-request">
+  <div class="request-id[<%= request.id %>] friend-mule-request well">
     <strong><%= request.requester.name %></strong>
     needs a <%= request.item_size %> sized
     <strong><%= request.item_description %></strong>
@@ -10,3 +10,12 @@
     <strong><%= request.date.strftime('%a %d %b %Y') %></strong>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(function () {
+    $('.friend-mule-request').click(function (event) {
+      var requestID = $(this).attr('class').match(/\d+/)[0];
+      window.location.href = '/requests/' + requestID + '?source=home';
+    })
+  })
+</script>

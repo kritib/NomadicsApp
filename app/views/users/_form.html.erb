@@ -8,11 +8,11 @@
   <%= f.input :photo_blob, :label => 'Upload a Profile Picture',
                            :as => :file %>
   <% if @current_user %>
-    <%= f.submit "Save Changes" %>
+    <%= f.submit "Save Changes", class: "btn" %>
   <% else %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <%= f.submit "Sign Up!" %>
+    <%= f.submit "Sign Up!", class: "btn" %>
   <% end %>
 
 <% end %>

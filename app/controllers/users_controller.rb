@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user.photo_blob = photo_io.read unless photo_io.nil?
 
     if @user.save
-      flash[:notice] = "Welcome to FriendMule, #{@user.name}!"
+      flash[:notice] = "Welcome to Nomadics, #{@user.name}!"
       @current_user = @user
       token = @current_user.reset_token
       session[:token] = token
@@ -89,6 +89,7 @@ class UsersController < ApplicationController
 
   def search
     @results = User.find_users(params[:search_query])
+    @friends = @current_user.travelers
     render 'search'
   end
 

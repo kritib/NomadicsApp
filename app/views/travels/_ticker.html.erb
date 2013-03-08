@@ -26,30 +26,23 @@
 </table> -->
 
 <% friend_travels.each do |travel| %>
+  <div class="travel-id[<%= travel.id %>] friend-travel well">
 
-  <div class="row friend-travel travel-id[<%= travel.id %>]">
-    <strong><%= travel.traveler.name %></strong>
-    <% if travel.date >= Date.today %>is going <% else %>went <% end %>from
-    <strong><%= travel.from_country.name %></strong> to
-    <strong><%= travel.to_country.name %></strong> on
-    <strong><%= travel.date.strftime('%a %d %b %Y') %></strong>
-  </div>
+      <strong><%= travel.traveler.name %></strong>
+      <% if travel.date >= Date.today %>is going <% else %>went <% end %>from
+      <strong><%= travel.from_country.name %></strong> to
+      <strong><%= travel.to_country.name %></strong> on
+      <strong><%= travel.date.strftime('%a %d %b %Y') %></strong>
 
-  <div class="friend-travel travel-id[<%= travel.id %>]">
-    <div class="well">
-      <%= travel.traveler.name %> <% if travel.date >= Date.today %>is going <% else %>went <% end %>from <%= travel.from_country.name %> to <%= travel.to_country.name %> on <%= travel.date.strftime('%a %d %b %Y') %>
-    </div>
   </div>
 <% end %>
 
+
 <script type="text/javascript">
   $(function () {
-    $('.travels-ticker').click(function (event) {
-      var travelID = $(event.target).attr('class').match(/\d+/)[0];
-      window.location.href = 'travels/' + travelID;
+    $('.friend-travel').click(function (event) {
+      var travelID = $(this).attr('class').match(/\d+/)[0];
+      window.location.href = '/travels/' + travelID + '?source=home';
     })
-
   })
-
-
 </script>

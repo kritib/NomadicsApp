@@ -22,6 +22,12 @@ class TravelsController < ApplicationController
   def show
     @travel = Travel.find(params[:id])
     @comments = @travel.comments
+    case params[:source]
+    when "home"
+      @source = "/"
+    else
+      @source = "/users/#{@travel.user_id}"
+    end
   end
 
 

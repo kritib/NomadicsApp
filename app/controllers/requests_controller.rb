@@ -28,6 +28,12 @@ class RequestsController < ApplicationController
 
 	def show
     @request = Request.find(params[:id])
+    case params[:source]
+    when "home"
+      @source = "/"
+    else
+      @source = "/users/#{@request.requester_id}"
+    end
   end
 
   def edit

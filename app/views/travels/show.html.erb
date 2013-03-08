@@ -40,8 +40,7 @@
   <% if @travel.user_id == @current_user.id %>
     <%= link_to "Back to My Page", user_path(@travel.user_id) %>
   <% else %>
-    <%= link_to "Back to #{@travel.traveler.first_name}'s Page",
-        user_path(@travel.user_id) %>
+    <%= link_to "Back", @source %>
   <% end %>
 </div>
 
