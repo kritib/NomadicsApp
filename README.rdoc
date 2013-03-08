@@ -1,19 +1,22 @@
-Nomadics!
+== Nomadics!
 
 Overview:
-Are you a resident of the global village? Do you want something from another city/country/continent that would be wayyy too annoying and expensive to have shipped to you? Do you want to gift something to someone far away and shipping it costs more than the actual gift itself? Yes? Well then this app is perfect for you!
+  Are you a resident of the global village? Do you want something from another city/country/continent that would be wayyy too annoying and expensive to have shipped to you? Do you want to gift something to someone far away and shipping it costs more than the actual gift itself? Yes? Well then this app is perfect for you!
 
-Nomadics is a portal for you to instantly find friends that are making the journey your item needs to make. You can log your own travels and the start and end locations for the items you want moved. Then let the couriering begin!
+  Nomadics is a portal for you to instantly find friends that are making the journey your item needs to make. You can log your own travels and the start and end locations for the items you want moved. Then let the couriering begin!
+
+Website:
+  link:http://nomadics.herokuapp.com/
 
 Details:
-Platform: Ruby on Rails
-Database: users, countries, travels, requests, relationships
+  Platform: Ruby on Rails
+  Database: users, countries, travels, requests, relationships
 
 Features:
-Authentication: ‘brcypt-ruby’ password protection
-Authorization:  session cookies to determine access
-Database Navigation: ActiveRecord and SQL
-Routing: Uses CRUD routing for navigation and editing
-AJAX: Pages are divided into containers, with all requests that redirect to the same page using ajax
-Views: Bootstrap to format css
-Animation: Canvas with a graphic of the user’s travels
+  Authentication: ‘brcypt-ruby’ password protection
+  Authorization:  session cookies to determine access
+  Database Navigation: ActiveRecord and SQL
+  Routing: Uses CRUD routing for navigation and editing
+  AJAX: Pages are divided into containers, with all requests that redirect to the same page using ajax
+  Views: Bootstrap to format css
+  Animation: Canvas with a graphic of the user’s travels
